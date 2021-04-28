@@ -18,6 +18,18 @@ localStorage.setItem(
   "toDo",
   JSON.stringify([
     {
+      label: "run",
+      value: "run",
+      completed: false,
+      id: Math.random().toString(36).substring(7),
+    },
+    {
+      label: "do something",
+      value: "do something",
+      completed: true,
+      id: Math.random().toString(36).substring(7),
+    },
+    {
       label: "Drink Water",
       value: "Drink Water",
       completed: false,

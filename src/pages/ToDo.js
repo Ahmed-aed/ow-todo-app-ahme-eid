@@ -24,6 +24,7 @@ const ToDo = () => {
       },
     });
   };
+  console.log(toDo?.filter((row) => row.completed && row.value));
   return (
     <Row type="flex" justify="center" align="middle">
       <Col span={24}>
@@ -37,7 +38,12 @@ const ToDo = () => {
         </Form>
       </Col>
       <Col>
-        <Checkbox.Group options={toDo} />
+        <Checkbox.Group
+          options={toDo}
+          defaultValue={toDo
+            ?.filter((row) => row.completed)
+            .map((row) => row.value)}
+        />
       </Col>
     </Row>
   );
