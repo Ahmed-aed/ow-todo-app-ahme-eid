@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Input, Form, Checkbox } from "antd";
+import { Row, Col, Input, Form, Checkbox, Button } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
 
 import "./style.css";
 
 const ToDo = () => {
   const toDo = useSelector((state) => state.todo.toDo);
+  console.log(useSelector((state) => state), '5555555555');
+
+
   const [toDoList, setToDoList] = useState([]);
   const [completedToDo, setCompletedToDo] = useState([]);
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch({
       type: "GET_TODO",
       payload: {},
     });
   }, [dispatch]);
+
   useEffect(() => {
     setToDoList(toDo);
 
@@ -35,11 +42,33 @@ const ToDo = () => {
   };
 
   const handelCompleteToDo = (data) => {
+    const newData = toDoList.map((row) => {
+      row.completed = data.includes(row.value);
+      return row;
+    });
     dispatch({
       type: "COMPLETE_TODO",
-      payload: data,
+      payload: newData,
     });
   };
+
+  const handleDeleteToDo = (e, data) => {
+    const newData = toDoList?.filter((row) => row.id !== data.id);
+
+    dispatch({
+      type: "DELETE_TODO",
+      payload: newData,
+    });
+  };
+
+  const handelFilterActive = () => {
+    const newData = toDoList.filter((row) => !row.completed)
+    dispatch({
+      type: 'FILTER_ACTIVE_TODO',
+      payload: newData
+    })
+
+  }
 
   return (
     <Row type="flex" justify="center" align="middle">
@@ -54,11 +83,24 @@ const ToDo = () => {
         </Form>
       </Col>
       <Col>
-        <Checkbox.Group
-          options={toDoList}
-          value={completedToDo}
-          onChange={handelCompleteToDo}
-        />
+        <Checkbox.Group value={completedToDo} onChange={handelCompleteToDo}>
+          {toDoList?.map((row) => (
+            <div>
+              <Checkbox value={row.value}>{row.label}</Checkbox>
+              <Button
+                icon={<CloseOutlined />}
+                onClick={(e) => handleDeleteToDo(e, row)}
+              />
+            </div>
+          ))}
+          <div className="spanDiv">
+            <span>5 Items left</span>
+            <span className="marginLeft">All</span>
+            <span className="marginLeft" onClick={handelFilterActive}>Active</span>
+            <span className="marginLeft">Completed</span>
+            <span className="marginLeft">Clear Completed</span>
+          </div>
+        </Checkbox.Group>
       </Col>
     </Row>
   );

@@ -6,7 +6,9 @@ import { watcherSaga } from "./sagas/rootSaga";
 
 const reducer = combineReducers({
   todo: toDoReducer,
+
 });
+console.log(toDoReducer);
 
 const sagaMiddleware = createSagaMiddleware();
 

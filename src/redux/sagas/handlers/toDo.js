@@ -3,6 +3,8 @@ import {
   requestGetToDo,
   requestPostToDo,
   requestCompleteToDo,
+  requestDeleteToDo,
+  requestFilterActiveToDo
 } from "../requests/toDo";
 
 export function* handleGetToDo() {
@@ -29,6 +31,30 @@ export function* handleCompleteToDo(action) {
     const response = yield call(requestCompleteToDo, action.payload);
     if (response)
       yield put({ type: "COMPLETE_TODO", payload: JSON.parse(response) });
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handleDeleteToDo(action) {
+  console.log(action);
+  try {
+    const response = yield call(requestDeleteToDo, action.payload);
+    if (response) {
+      console.log(JSON.parse(response));
+      yield put({ type: "COMPLETE_TODO", payload: JSON.parse(response) });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handleFilterActiveToDo(action) {
+  console.log(action);
+  try {
+    const response = yield call(requestFilterActiveToDo, action.payload);
+    if (response) {
+      console.log(JSON.parse(response));
+      yield put({ type: "FILTER_ACTIVE_TODO", payload: JSON.parse(response) });
+    }
   } catch (error) {
     console.log(error);
   }
