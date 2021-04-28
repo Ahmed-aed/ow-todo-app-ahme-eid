@@ -5,3 +5,10 @@ export function requestGetToDo() {
     url: "http://localhost:7000/toDo",
   });
 }
+export function requestPostToDo(data) {
+  return Axios.request({
+    method: "post",
+    url: "http://localhost:7000/toDo",
+    data,
+  });
+}

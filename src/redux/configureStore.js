@@ -16,6 +16,5 @@ const store = createStore(reducer, {}, applyMiddleware(...middleware));
 //apply middleware should be 3th
 
 sagaMiddleware.run(watcherSaga);
-console.log(store, "55555555");
 
 export default store;
