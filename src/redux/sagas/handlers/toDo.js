@@ -1,5 +1,9 @@
 import { call, put } from "redux-saga/effects";
-import { requestGetToDo, requestPostToDo } from "../requests/toDo";
+import {
+  requestGetToDo,
+  requestPostToDo,
+  requestCompleteToDo,
+} from "../requests/toDo";
 
 export function* handleGetToDo() {
   try {
@@ -16,6 +20,15 @@ export function* handlePostToDo(action) {
     const response = yield call(requestPostToDo, action.payload);
     if (response)
       yield put({ type: "POST_TODO", payload: JSON.parse(response) });
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handleCompleteToDo(action) {
+  try {
+    const response = yield call(requestCompleteToDo, action.payload);
+    if (response)
+      yield put({ type: "COMPLETE_TODO", payload: JSON.parse(response) });
   } catch (error) {
     console.log(error);
   }

@@ -17,6 +17,7 @@ const ToDo = () => {
   }, [dispatch]);
   useEffect(() => {
     setToDoList(toDo);
+
     setCompletedToDo(
       toDo?.filter((row) => row.completed).map((row) => row.value)
     );
@@ -33,8 +34,11 @@ const ToDo = () => {
     });
   };
 
-  const handelCompleteToDo = (value) => {
-    setCompletedToDo(value);
+  const handelCompleteToDo = (data) => {
+    dispatch({
+      type: "COMPLETE_TODO",
+      payload: data,
+    });
   };
 
   return (

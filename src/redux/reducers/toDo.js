@@ -32,12 +32,7 @@ export default (state = initialStat, action) => {
     case POST_TODO:
       return { ...state, toDo: [...state.toDo, action.payload] };
     case COMPLETE_TODO:
-      return {
-        ...state,
-        toDo: state.toDo?.filter((row) => {
-          row.id === action.payload;
-        }),
-      };
+      return { ...state, toDo: action.payload };
     default:
       return state;
   }
