@@ -5,3 +5,7 @@
   background-position: center;
   background-size: cover;
 }
+.ant-checkbox-wrapper-checked span {
+  color: lightgray;
+  text-decoration: line-through;
+}

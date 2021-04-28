@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Input, Form, Checkbox } from "antd";
 
 import "./style.css";
 
 const ToDo = () => {
+  const toDo = useSelector((state) => state.todo.toDo);
+  const [toDoList, setToDoList] = useState([]);
+  const [completedToDo, setCompletedToDo] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({
@@ -12,7 +15,12 @@ const ToDo = () => {
       payload: {},
     });
   }, [dispatch]);
-  const toDo = useSelector((state) => state.todo.toDo);
+  useEffect(() => {
+    setToDoList(toDo);
+    setCompletedToDo(
+      toDo?.filter((row) => row.completed).map((row) => row.value)
+    );
+  }, [toDo]);
   const onSubmitAdd = (value) => {
     dispatch({
       type: "POST_TODO",
@@ -24,7 +32,11 @@ const ToDo = () => {
       },
     });
   };
-  console.log(toDo?.filter((row) => row.completed && row.value));
+
+  const handelCompleteToDo = (value) => {
+    setCompletedToDo(value);
+  };
+
   return (
     <Row type="flex" justify="center" align="middle">
       <Col span={24}>
@@ -39,10 +51,9 @@ const ToDo = () => {
       </Col>
       <Col>
         <Checkbox.Group
-          options={toDo}
-          defaultValue={toDo
-            ?.filter((row) => row.completed)
-            .map((row) => row.value)}
+          options={toDoList}
+          value={completedToDo}
+          onChange={handelCompleteToDo}
         />
       </Col>
     </Row>
