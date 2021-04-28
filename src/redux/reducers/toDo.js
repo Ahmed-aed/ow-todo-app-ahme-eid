@@ -17,17 +17,15 @@ export const postToDo = (toDo) => ({
   toDo,
 });
 const initialStat = {
-  toDo: undefined,
+  toDo: [],
 };
 
 export default (state = initialStat, action) => {
   switch (action.type) {
     case SET_TODO:
-      const { toDo } = action;
-      return { ...state, toDo };
-
+      return { ...state, toDo: action.payload };
     case POST_TODO:
-      return { ...state, toDo: [action.toDo] };
+      return { ...state, toDo: [...state.toDo, action.payload] };
     default:
       return state;
   }

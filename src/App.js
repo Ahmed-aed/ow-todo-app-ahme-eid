@@ -5,13 +5,13 @@ import { ToDo } from "../src/pages/index";
 
 const App = () => (
   <div className="App">
-    <Router history={browserHistory}>
+    <BrowserRouter>
       <Switch>
         <Route exact path={"/"}>
           <ToDo />
         </Route>
       </Switch>
-    </Router>
+    </BrowserRouter>
   </div>
 );
 

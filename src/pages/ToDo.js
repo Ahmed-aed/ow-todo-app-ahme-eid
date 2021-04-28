@@ -4,25 +4,22 @@ import { Row, Col, Input, Form, Checkbox } from "antd";
 
 import "./style.css";
 
-const ToDo = (props) => {
-  console.log(props);
-
+const ToDo = () => {
   const dispatch = useDispatch();
-  /* 
   useEffect(() => {
     dispatch({
       type: "GET_TODO",
       payload: {},
     });
-  }, [dispatch]); */
+  }, [dispatch]);
   const toDo = useSelector((state) => state.todo.toDo);
-
   const onSubmitAdd = (value) => {
     dispatch({
       type: "POST_TODO",
       payload: {
-        label: value.todo,
-        value: value.todo,
+        id: Math.random().toString(36).substring(7),
+        label: value.toDo,
+        value: value.toDo,
         completed: false,
       },
     });
@@ -40,7 +37,7 @@ const ToDo = (props) => {
         </Form>
       </Col>
       <Col>
-        {/*  <Checkbox.Group options={toDo} defaultValue={["Apple"]} /> */}
+        <Checkbox.Group options={toDo} />
       </Col>
     </Row>
   );

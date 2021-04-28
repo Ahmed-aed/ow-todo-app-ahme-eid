@@ -1,14 +1,8 @@
-import Axios from "axios";
 export function requestGetToDo() {
-  return Axios.request({
-    method: "get",
-    url: "http://localhost:7000/toDo",
-  });
+  return localStorage.getItem("toDo");
 }
 export function requestPostToDo(data) {
-  return Axios.request({
-    method: "post",
-    url: "http://localhost:7000/toDo",
-    data,
-  });
+  const prevData = JSON.parse(localStorage.getItem("toDo"));
+  const newData = [...prevData, data];
+  return localStorage.setItem("toDo", JSON.stringify(newData));
 }
