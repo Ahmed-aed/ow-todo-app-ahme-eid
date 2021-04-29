@@ -9,7 +9,13 @@ export function requestPostToDo(data) {
 }
 
 export function requestCompleteToDo(data) {
-  return localStorage.setItem("toDo", JSON.stringify(data));
+  const prevData = JSON.parse(localStorage.getItem("toDo"));
+  const completedData = data.filter(row => row.completed).map(row => row.value)
+  const newData = prevData.map((row) => {
+    row.completed = completedData.includes(row.value);
+    return row;
+  });
+  return localStorage.setItem("toDo", JSON.stringify(newData));
 }
 
 export function requestDeleteToDo(data) {

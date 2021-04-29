@@ -8,7 +8,7 @@ const reducer = combineReducers({
   todo: toDoReducer,
 
 });
-console.log(toDoReducer);
+
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,22 +20,22 @@ localStorage.setItem(
   "toDo",
   JSON.stringify([
     {
-      label: "run",
-      value: "run",
+      label: "Welcome for every one ",
+      value: "Welcome for every one",
       completed: false,
-      id: Math.random().toString(36).substring(7),
+
     },
     {
-      label: "do something",
-      value: "do something",
+      label: "Redux Saga",
+      value: "Redux Saga",
       completed: true,
-      id: Math.random().toString(36).substring(7),
+
     },
     {
       label: "Drink Water",
       value: "Drink Water",
       completed: false,
-      id: Math.random().toString(36).substring(7),
+
     },
   ])
 );

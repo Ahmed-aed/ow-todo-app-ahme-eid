@@ -7,7 +7,6 @@ import "./style.css";
 
 const ToDo = () => {
   const toDo = useSelector((state) => state.todo.toDo);
-  const filterToDo = useSelector((state) => state.todo.filterToDo);
   const [toDoList, setToDoList] = useState([]);
   const [completedToDo, setCompletedToDo] = useState([]);
 
@@ -31,7 +30,7 @@ const ToDo = () => {
     dispatch({
       type: "POST_TODO",
       payload: {
-        id: Math.random().toString(36).substring(7),
+
         label: value.toDo,
         value: value.toDo,
         completed: false,
@@ -51,7 +50,7 @@ const ToDo = () => {
   };
 
   const handleDeleteToDo = (e, data) => {
-    const newData = toDoList?.filter((row) => row.id !== data.id);
+    const newData = toDoList?.filter((row) => row.value !== data.value);
 
     dispatch({
       type: "DELETE_TODO",
@@ -69,10 +68,12 @@ const ToDo = () => {
 
   }
 
-  const handelFilterComplete = () => {
-    const newData = toDoList.filter((row) => !row.completed)
+  const handelFilterCompleted = () => {
+
+    const newData = toDoList.filter((row) => row.completed)
+    setToDoList(newData)
     dispatch({
-      type: 'FILTER_ACTIVE_TODO',
+      type: 'FILTER_COMPLETED_TODO',
       payload: newData
     })
 
@@ -80,12 +81,21 @@ const ToDo = () => {
 
   const handelFilterClearComplete = () => {
     const newData = toDoList.filter((row) => !row.completed)
+    setToDoList(newData)
     dispatch({
-      type: 'FILTER_ACTIVE_TODO',
+      type: 'FILTER_CLEAR_COMPLETED',
       payload: newData
     })
 
   }
+  const handelFilterAll = () => {
+    dispatch({
+      type: "GET_TODO",
+      payload: {},
+    });
+  }
+
+  console.log(toDoList.filter((row) => !row.completed));
 
   return (
     <div className='container'>
@@ -111,10 +121,10 @@ const ToDo = () => {
                 </div>
               ))}
               <div className="spanDiv">
-                <span className="borderLeft">5 Items left</span>
-                <span className="borderLeft">All</span>
+                <span className="borderLeft"><span>{toDoList.filter((row) => !row.completed).length}</span> Items left</span>
+                <span className="borderLeft" onClick={handelFilterAll}>All</span>
                 <span className="borderLeft" onClick={handelFilterActive}>Active</span>
-                <span className="borderLeft" onClick={handelFilterComplete}>Completed</span>
+                <span className="borderLeft" onClick={handelFilterCompleted}>Completed</span>
                 <span className="borderLeft" onClick={handelFilterClearComplete}>Clear Completed</span>
               </div>
             </Checkbox.Group>

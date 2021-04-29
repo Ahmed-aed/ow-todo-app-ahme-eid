@@ -6,8 +6,8 @@ export const COMPLETE_TODO = "COMPLETE_TODO";
 export const DELETE_TODO = "DELETE_TODO";
 
 export const FILTER_ACTIVE_TODO = "FILTER_ACTIVE_TODO"
-export const FILTER_Completed_TODO = "FILTER_Completed_TODO"
-export const FILTER_ClearCompleted_TODO = "FILTER_ClearCompleted_TODO"
+export const FILTER_COMPLETED_TODO = "FILTER_COMPLETED_TODO"
+export const FILTER_CLEAR_COMPLETED = "FILTER_CLEAR_COMPLETED"
 
 export const getToDo = () => ({
   type: GET_TODO,
@@ -35,12 +35,12 @@ export const filterActiveToDo = (toDo) => ({
   toDo,
 });
 export const filterCompletedToDo = (toDo) => ({
-  type: FILTER_Completed_TODO,
+  type: FILTER_COMPLETED_TODO,
   toDo,
 });
 
 export const filterClearCompletedToDo = (toDo) => ({
-  type: FILTER_ClearCompleted_TODO,
+  type: FILTER_CLEAR_COMPLETED,
   toDo,
 });
 const initialStat = {
@@ -63,10 +63,10 @@ export default (state = initialStat, action) => {
     case FILTER_ACTIVE_TODO:
       return { ...state, filterToDo: action.payload };
 
-    case FILTER_Completed_TODO:
+    case FILTER_COMPLETED_TODO:
       return { ...state, filterToDo: action.payload };
-    case FILTER_ClearCompleted_TODO:
 
+    case FILTER_CLEAR_COMPLETED:
       return { ...state, filterToDo: action.payload };
     default:
       return state;

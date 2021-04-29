@@ -14,8 +14,8 @@ import {
   COMPLETE_TODO,
   DELETE_TODO,
   FILTER_ACTIVE_TODO,
-  FILTER_Completed_TODO,
-  FILTER_ClearCompleted_TODO
+  FILTER_COMPLETED_TODO,
+  FILTER_CLEAR_COMPLETED
 } from "../reducers/toDo";
 
 export function* watcherSaga() {
@@ -24,6 +24,6 @@ export function* watcherSaga() {
   yield takeLatest(COMPLETE_TODO, handleCompleteToDo);
   yield takeLatest(DELETE_TODO, handleDeleteToDo);
   yield takeLatest(FILTER_ACTIVE_TODO, handleFilterActiveToDo);
-  yield takeLatest(FILTER_Completed_TODO, handleFilterCompletedToDo);
-  yield takeLatest(FILTER_ClearCompleted_TODO, handleFilterClearCompletedToDo);
+  yield takeLatest(FILTER_COMPLETED_TODO, handleFilterCompletedToDo);
+  yield takeLatest(FILTER_CLEAR_COMPLETED, handleFilterClearCompletedToDo);
 }
