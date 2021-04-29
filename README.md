@@ -4,7 +4,7 @@ I build this project to help the people who want to manage their time and they w
 
 ## Live demo :tv:
 
-Click here [Todo App](https://saga-todo.herokuapp.com/) to get a nice experience by using the demo version.
+Click here [Todo App](https://608aa30665a3bd2875c9f417--quirky-babbage-44556a.netlify.app/) to get a nice experience by using the demo version.
 
 ## Usage The App
 
