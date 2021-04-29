@@ -4,8 +4,11 @@ import {
   requestPostToDo,
   requestCompleteToDo,
   requestDeleteToDo,
-  requestFilterActiveToDo
+  requestFilterActiveToDo,
+  requestFilterCompletedToDo,
+  requestFilterClearCompletedToDo
 } from "../requests/toDo";
+
 
 export function* handleGetToDo() {
   try {
@@ -26,6 +29,7 @@ export function* handlePostToDo(action) {
     console.log(error);
   }
 }
+
 export function* handleCompleteToDo(action) {
   try {
     const response = yield call(requestCompleteToDo, action.payload);
@@ -35,6 +39,7 @@ export function* handleCompleteToDo(action) {
     console.log(error);
   }
 }
+
 export function* handleDeleteToDo(action) {
   console.log(action);
   try {
@@ -47,6 +52,7 @@ export function* handleDeleteToDo(action) {
     console.log(error);
   }
 }
+
 export function* handleFilterActiveToDo(action) {
   console.log(action);
   try {
@@ -54,6 +60,32 @@ export function* handleFilterActiveToDo(action) {
     if (response) {
       console.log(JSON.parse(response));
       yield put({ type: "FILTER_ACTIVE_TODO", payload: JSON.parse(response) });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* handleFilterCompletedToDo(action) {
+  console.log(action);
+  try {
+    const response = yield call(requestFilterCompletedToDo, action.payload);
+    if (response) {
+      console.log(JSON.parse(response));
+      yield put({ type: "FILTER_Completed_TODO", payload: JSON.parse(response) });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* handleFilterClearCompletedToDo(action) {
+  console.log(action);
+  try {
+    const response = yield call(requestFilterClearCompletedToDo, action.payload);
+    if (response) {
+      console.log(JSON.parse(response));
+      yield put({ type: "FILTER_ClearCompleted_TODO", payload: JSON.parse(response) });
     }
   } catch (error) {
     console.log(error);

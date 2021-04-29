@@ -1,3 +1,7 @@
+.container {
+  position: relative;
+}
+
 .background {
   background-image: url("./assets/bg-desktop-light.jpg");
   height: 300px;
@@ -12,7 +16,61 @@
 .spanDiv {
   width: 100%;
   display: flex;
+  font-size: 13px;
+  margin-top: 25px;
 }
 .spanDiv .marginLeft {
   margin-left: 3%;
+}
+.todo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.todoContent {
+  width: 400px;
+}
+.todoDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
+
+.todoDiv .todoList {
+  padding: 24px;
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  box-shadow: 0 1px 5px rgba(158, 158, 158, 0.8);
+}
+.todoDiv .todoList .todoListSpan {
+  padding: 10px;
+  border-bottom: 1px solid #80808047;
+  display: flex;
+  justify-content: space-between;
+}
+.todoDiv .todoList .todoListSpan .ant-checkbox-wrapper {
+  display: flex;
+}
+.todoDiv .todoList .todoListSpan .ant-checkbox-wrapper span:last-child {
+  margin-left: 5px;
+}
+.todoDiv .todoList .todoListSpan button {
+  border: none;
+  background-color: white;
+}
+input[type="text"] {
+  width: 98%;
+  border: 1px solid #80808047;
+  height: 48px;
+  border-radius: 5px;
+}
+@media only screen and (max-width: 1060px) {
+  .todoDiv {
+    left: 8%;
+  }
 }
