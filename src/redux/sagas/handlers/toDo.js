@@ -54,7 +54,6 @@ export function* handleDeleteToDo(action) {
 }
 
 export function* handleFilterActiveToDo(action) {
-  console.log(action);
   try {
     const response = yield call(requestFilterActiveToDo, action.payload);
     if (response) {
@@ -67,7 +66,6 @@ export function* handleFilterActiveToDo(action) {
 }
 
 export function* handleFilterCompletedToDo(action) {
-  console.log(action);
   try {
     const response = yield call(requestFilterCompletedToDo, action.payload);
     if (response) {
@@ -80,7 +78,6 @@ export function* handleFilterCompletedToDo(action) {
 }
 
 export function* handleFilterClearCompletedToDo(action) {
-  console.log(action);
   try {
     const response = yield call(requestFilterClearCompletedToDo, action.payload);
     if (response) {

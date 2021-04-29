@@ -4,23 +4,35 @@
 
 .background {
   background-image: url("./assets/bg-desktop-light.jpg");
+  width: 100%;
   height: 300px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 .ant-checkbox-wrapper-checked span {
-  color: lightgray;
+  color: #a9a0a0;
   text-decoration: line-through;
 }
 .spanDiv {
-  width: 100%;
   display: flex;
   font-size: 13px;
   margin-top: 25px;
+  padding: 0 17px;
+  justify-content: space-around;
+  color: #a9a0a0;
 }
-.spanDiv .marginLeft {
-  margin-left: 3%;
+.spanDiv .borderLeft {
+  padding-right: 8px;
+  cursor: pointer;
+}
+.spanDiv .borderLeft:last-child {
+  border-right: none;
+  margin-left: 15px;
+}
+.spanDiv .borderLeft:first-child {
+  cursor: initial;
+  margin-right: 15px;
 }
 .todo {
   display: flex;
@@ -32,16 +44,13 @@
   width: 400px;
 }
 .todoDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   top: 40%;
   left: 40%;
 }
 
 .todoDiv .todoList {
-  padding: 24px;
+  padding: 24px 0;
   background-color: white;
   border-radius: 5px;
   margin-top: 25px;
@@ -59,18 +68,54 @@
 .todoDiv .todoList .todoListSpan .ant-checkbox-wrapper span:last-child {
   margin-left: 5px;
 }
+
 .todoDiv .todoList .todoListSpan button {
   border: none;
   background-color: white;
+  color: #a9a0a0;
+  cursor: pointer;
+}
+input[type="text"]::placeholder {
+  color: #a9a0a0;
 }
 input[type="text"] {
-  width: 98%;
-  border: 1px solid #80808047;
+  width: calc(100% - 35px);
   height: 48px;
-  border-radius: 5px;
+  padding: 0 0 0 35px;
+  border: none;
 }
-@media only screen and (max-width: 1060px) {
+input:focus-visible {
+  outline-offset: initial;
+  outline: none;
+}
+.formDiv {
+  overflow: hidden;
+  border: 1px solid #80808047;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px rgba(158, 158, 158, 0.8);
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+@media (max-width: 1060px) {
   .todoDiv {
-    left: 8%;
+    left: 30%;
+  }
+}
+@media (max-width: 767px) {
+  .todoDiv {
+    left: 20%;
+  }
+}
+@media (max-width: 575px) {
+  .todoDiv {
+    left: 10%;
+  }
+}
+@media (max-width: 411px) {
+  .todoDiv {
+    left: 0;
   }
 }

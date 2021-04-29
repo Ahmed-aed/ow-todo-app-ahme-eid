@@ -58,11 +58,15 @@ export default (state = initialStat, action) => {
       return { ...state, toDo: action.payload };
     case DELETE_TODO:
       return { ...state, toDo: action.payload };
+
+
     case FILTER_ACTIVE_TODO:
       return { ...state, filterToDo: action.payload };
+
     case FILTER_Completed_TODO:
       return { ...state, filterToDo: action.payload };
     case FILTER_ClearCompleted_TODO:
+
       return { ...state, filterToDo: action.payload };
     default:
       return state;

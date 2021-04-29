@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Input, Form, Checkbox, Button } from "antd";
+import { Input, Form, Checkbox, Button, Row, Col } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 
 import "./style.css";
 
 const ToDo = () => {
   const toDo = useSelector((state) => state.todo.toDo);
-  console.log(useSelector((state) => state), '5555555555');
-
-
+  const filterToDo = useSelector((state) => state.todo.filterToDo);
   const [toDoList, setToDoList] = useState([]);
   const [completedToDo, setCompletedToDo] = useState([]);
 
@@ -24,7 +22,6 @@ const ToDo = () => {
 
   useEffect(() => {
     setToDoList(toDo);
-
     setCompletedToDo(
       toDo?.filter((row) => row.completed).map((row) => row.value)
     );
@@ -64,6 +61,25 @@ const ToDo = () => {
 
   const handelFilterActive = () => {
     const newData = toDoList.filter((row) => !row.completed)
+    setToDoList(newData)
+    dispatch({
+      type: 'FILTER_ACTIVE_TODO',
+      payload: newData
+    })
+
+  }
+
+  const handelFilterComplete = () => {
+    const newData = toDoList.filter((row) => !row.completed)
+    dispatch({
+      type: 'FILTER_ACTIVE_TODO',
+      payload: newData
+    })
+
+  }
+
+  const handelFilterClearComplete = () => {
+    const newData = toDoList.filter((row) => !row.completed)
     dispatch({
       type: 'FILTER_ACTIVE_TODO',
       payload: newData
@@ -74,12 +90,12 @@ const ToDo = () => {
   return (
     <div className='container'>
       <div className="background" />
-      <div className='todoDiv'>
-        <div className='todoContent'>
-          <div>
+      <Row className='todoDiv'>
+        <Col span={10} className='todoContent'>
+          <div className='formDiv'>
             <Form onFinish={onSubmitAdd}>
               <Form.Item name="toDo">
-                <Input />
+                <Input placeholder='Add New Todo..' />
               </Form.Item>
             </Form>
           </div>
@@ -95,16 +111,16 @@ const ToDo = () => {
                 </div>
               ))}
               <div className="spanDiv">
-                <span>5 Items left</span>
-                <span className="marginLeft">All</span>
-                <span className="marginLeft" onClick={handelFilterActive}>Active</span>
-                <span className="marginLeft">Completed</span>
-                <span className="marginLeft">Clear Completed</span>
+                <span className="borderLeft">5 Items left</span>
+                <span className="borderLeft">All</span>
+                <span className="borderLeft" onClick={handelFilterActive}>Active</span>
+                <span className="borderLeft" onClick={handelFilterComplete}>Completed</span>
+                <span className="borderLeft" onClick={handelFilterClearComplete}>Clear Completed</span>
               </div>
             </Checkbox.Group>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </div>
 
 
