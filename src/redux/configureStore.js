@@ -26,16 +26,37 @@ localStorage.setItem(
 
     },
     {
-      label: "Redux Saga",
-      value: "Redux Saga",
-      completed: true,
+      label: "Redux Saga to start should create action (dispatch) ",
+      value: "Redux Saga to start should create action (dispatch) ",
+      completed: false,
 
     },
     {
-      label: "Drink Water",
-      value: "Drink Water",
+      label: "that action(dispatch) hit in the watcher saga",
+      value: "that action(dispatch) hit in the watcher saga",
       completed: false,
 
+    },
+    {
+      label: "watcher saga will call handler(handlerGetToDo)",
+      value: "watcher saga will call handler(handlerGetToDo)",
+      completed: false,
+
+    },
+    {
+      label: "handler will call request function like(request Get to Do)",
+      value: "handler will call request function like(request Get to Do)",
+      completed: false,
+    },
+    {
+      label: "when request get data,back to the handler to use put function to setToDo in redux store",
+      value: "when request get data,back to the handler to use put function to setToDo in redux store",
+      completed: false,
+    },
+    {
+      label: "that will allow us to access in any where an react app  ",
+      value: "that will allow us to access in any where an react app  ",
+      completed: false,
     },
   ])
 );

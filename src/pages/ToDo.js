@@ -95,7 +95,7 @@ const ToDo = () => {
     });
   }
 
-  console.log(toDoList.filter((row) => !row.completed));
+
 
   return (
     <div className='container'>
